@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   libft_calloc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:14:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/03/29 14:28:28 by meltremb         ###   ########.fr       */
+/*   Created: 2022/03/30 17:41:37 by meltremb          #+#    #+#             */
+/*   Updated: 2023/03/29 14:24:20 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include"../include/dbl_extension_libft.h"
 
-# include "../reworked-libft/libft.h"
-# include "../dbl_push_swap/include/dbl_extension_libft.h"
-
-typedef struct s_data
+void	ft_bzero(void *s, size_t n)
 {
-	t_pile	*a;
-	t_pile	*b;
-}			t_data;
+	char	*clean;
 
-void	init_piles(t_data *d);
-void	make_pile(t_pile *any, int argc, char **argv);
-void	indexer(t_pile *any);
+	clean = s;
+	while (n--)
+		*clean++ = 0;
+}
 
-#endif
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, count * size);
+	return (ptr);
+}

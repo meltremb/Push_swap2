@@ -1,3 +1,6 @@
 [submodule "reworked-libft"]
 	path = reworked-libft
 	url = git@github.com:meltremb/reworked-libft.git
+[submodule "dbl_lib"]
+	path = dbl_lib
+	url = git@github.com:meltremb/dbl_lib.git

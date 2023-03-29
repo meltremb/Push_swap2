@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   dbl_lst_free.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:14:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/03/29 14:28:28 by meltremb         ###   ########.fr       */
+/*   Created: 2023/03/22 14:10:54 by meltremb          #+#    #+#             */
+/*   Updated: 2023/03/29 14:30:16 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include"../include/dbl_extension_libft.h"
 
-# include "../reworked-libft/libft.h"
-# include "../dbl_push_swap/include/dbl_extension_libft.h"
-
-typedef struct s_data
+void	dbl_lst_free(t_pile *list)
 {
-	t_pile	*a;
-	t_pile	*b;
-}			t_data;
+	t_node	*temp;
+	t_node	*next;
 
-void	init_piles(t_data *d);
-void	make_pile(t_pile *any, int argc, char **argv);
-void	indexer(t_pile *any);
-
-#endif
+	next = list->first;
+	while (next)
+	{
+		temp = next;
+		next = next->next;
+		free(temp);
+	}
+	list->first = NULL;
+	list->last = NULL;
+}

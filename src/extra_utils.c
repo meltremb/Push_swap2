@@ -1,29 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   extra_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:14:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/03/29 14:28:28 by meltremb         ###   ########.fr       */
+/*   Created: 2023/03/29 10:58:53 by meltremb          #+#    #+#             */
+/*   Updated: 2023/03/29 11:03:49 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include "../reworked-libft/libft.h"
-# include "../dbl_push_swap/include/dbl_extension_libft.h"
-
-typedef struct s_data
-{
-	t_pile	*a;
-	t_pile	*b;
-}			t_data;
-
-void	init_piles(t_data *d);
-void	make_pile(t_pile *any, int argc, char **argv);
-void	indexer(t_pile *any);
-
-#endif
+#include "../include/push_swap.h"

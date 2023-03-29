@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/20 10:07:01 by meltremb          #+#    #+#              #
-#    Updated: 2023/03/29 13:26:06 by meltremb         ###   ########.fr        #
+#    Created: 2023/03/22 14:05:06 by meltremb          #+#    #+#              #
+#    Updated: 2023/03/29 14:24:20 by meltremb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,24 +32,19 @@ endif
 #                                VARIABLES                                     #
 #------------------------------------------------------------------------------#
 
-# Compiler and flags
-CC		=	gcc
-CFLAGS	=	-g -Wall -Werror -Wextra -fsanitize=address
+# flags
 RM		=	rm -rf
 
-# Libraries
-LDIR	=	reworked-libft/
-LIBFT	=	libft.a
-DBLDIR	=	dbl_push_swap/
-DBL		=	dbl_extension_libft.a
-
 # Dir and file names
-NAME	=	push_swap
+NAME	=	dbl_extension_libft.a
 SRCDIR	=	src/
 OBJDIR	=	bin/
-SRCS	=	src/push_swap.c \
-			src/make_pile.c \
-			src/indexer.c \
+SRCS	=	src/dbl_lst_add_back.c \
+			src/dbl_lst_add_front.c \
+			src/dbl_lst_free.c \
+			src/dbl_lst_print.c \
+			src/dbl_lst_rm.c \
+			src/libft_calloc.c \
 
 OBJS	=	$(patsubst $(SRCDIR)%.c,$(OBJDIR)%.o,$(SRCS))
 
@@ -57,38 +52,23 @@ OBJS	=	$(patsubst $(SRCDIR)%.c,$(OBJDIR)%.o,$(SRCS))
 #                                 TARGETS                                      #
 #------------------------------------------------------------------------------#
 
-all: submodule $(NAME)
+all: $(NAME)
 
 # Generates output file
-$(NAME): $(OBJS) $(LDIR)$(LIBFT) $(DBLDIR)$(DBL)
-	-@ $(HIDE)$(CC) $(CFLAGS) $(LDIR)$(LIBFT) $(DBLDIR)$(DBL) -o $@ $^
+$(NAME): $(OBJS)
+	-@ ar crs $@ $^
 
 $(OBJS): $(OBJDIR)%.o : $(SRCDIR)%.c
 		-@ $(HIDE)mkdir -p $(OBJDIR)
 		-@ $(HIDE)$(CC) $(CFLAGS) -c $< -o $@
-
-# Generates libft
-$(LDIR)$(LIBFT):
-	-@ $(MAKE) -C $(LDIR)
-
-# Generates DBL
-$(DBLDIR)$(DBL):
-	-@ $(MAKE) -C $(DBLDIR)
-
-submodule:
-	-@ git submodule update --init
-
+	
 # Removes objects
 clean:
 	-@ $(HIDE)$(RM) $(OBJS)
-	-@ $(MAKE) -C $(LDIR) clean
-	-@ $(MAKE) -C $(DBLDIR) clean
 
 # Removes objects and executables
 fclean: clean
 	-@ $(RM) $(NAME)
-	-@ $(RM) $(LDIR)/$(LIBFT)
-	-@ $(RM) $(DBLDIR)$(DBL)
 	
 # Removes objects and executables and remakes
 re: fclean all

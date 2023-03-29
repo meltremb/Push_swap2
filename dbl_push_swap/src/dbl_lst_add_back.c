@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   dbl_lst_add_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:14:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/03/29 14:28:28 by meltremb         ###   ########.fr       */
+/*   Created: 2023/03/22 14:10:48 by meltremb          #+#    #+#             */
+/*   Updated: 2023/03/29 14:29:36 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include"../include/dbl_extension_libft.h"
 
-# include "../reworked-libft/libft.h"
-# include "../dbl_push_swap/include/dbl_extension_libft.h"
-
-typedef struct s_data
+void	dbl_lst_add_back(t_pile *list, int elem)
 {
-	t_pile	*a;
-	t_pile	*b;
-}			t_data;
+	t_node	*temp;
 
-void	init_piles(t_data *d);
-void	make_pile(t_pile *any, int argc, char **argv);
-void	indexer(t_pile *any);
-
-#endif
+	temp = ft_calloc(1, sizeof(t_node));
+	if (!temp)
+		return ;
+	temp->content = elem;
+	temp->prev = list->last;
+	temp->next = NULL;
+	if (list->last)
+		list->last->next = temp;
+	else
+		list->first = temp;
+	list->last = temp;
+}

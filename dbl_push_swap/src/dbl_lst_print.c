@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   dbl_lst_print.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:14:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/03/29 14:28:28 by meltremb         ###   ########.fr       */
+/*   Created: 2023/03/22 14:10:56 by meltremb          #+#    #+#             */
+/*   Updated: 2023/03/29 10:21:10 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include"../include/dbl_extension_libft.h"
 
-# include "../reworked-libft/libft.h"
-# include "../dbl_push_swap/include/dbl_extension_libft.h"
-
-typedef struct s_data
+void	dbl_lst_print(t_pile *list)
 {
-	t_pile	*a;
-	t_pile	*b;
-}			t_data;
+	t_node	*shown;
 
-void	init_piles(t_data *d);
-void	make_pile(t_pile *any, int argc, char **argv);
-void	indexer(t_pile *any);
-
-#endif
+	shown = list->first;
+	printf("-----List-----\n");
+	while (shown)
+	{
+		printf("node%d:[%d]\n", shown->index, shown->content);
+		shown = shown->next;
+	}
+}
