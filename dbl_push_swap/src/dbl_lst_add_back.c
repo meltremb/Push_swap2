@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:10:48 by meltremb          #+#    #+#             */
-/*   Updated: 2023/03/29 14:29:36 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:10:30 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	dbl_lst_add_back(t_pile *list, int elem)
 	else
 		list->first = temp;
 	list->last = temp;
+	list->size++;
 }

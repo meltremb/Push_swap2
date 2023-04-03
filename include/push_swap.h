@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:14:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/03/29 14:28:28 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:19:28 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ typedef struct s_data
 {
 	t_pile	*a;
 	t_pile	*b;
+	char	type;
 }			t_data;
 
 void	init_piles(t_data *d);
 void	make_pile(t_pile *any, int argc, char **argv);
-void	indexer(t_pile *any);
+void	swap(t_data *d, char type);
+void	push(t_data *d, char type);
+void	rotate(t_data *d, char type);
+void	reverse_rotate(t_data *d, char type);
 
 #endif

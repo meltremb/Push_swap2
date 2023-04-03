@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:10:59 by meltremb          #+#    #+#             */
-/*   Updated: 2023/03/28 13:48:45 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:12:53 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void	dbl_lst_rm_node(t_pile *list, t_node *node)
 		node->next->prev = node->prev;
 	}
 	free(temp);
+	list->size--;
 }

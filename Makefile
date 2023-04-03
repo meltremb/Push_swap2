@@ -6,7 +6,7 @@
 #    By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 10:07:01 by meltremb          #+#    #+#              #
-#    Updated: 2023/03/29 13:26:06 by meltremb         ###   ########.fr        #
+#    Updated: 2023/04/03 14:19:01 by meltremb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ endif
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-g -Wall -Werror -Wextra -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -rf
 
 # Libraries
@@ -49,7 +49,7 @@ SRCDIR	=	src/
 OBJDIR	=	bin/
 SRCS	=	src/push_swap.c \
 			src/make_pile.c \
-			src/indexer.c \
+			src/moves.c \
 
 OBJS	=	$(patsubst $(SRCDIR)%.c,$(OBJDIR)%.o,$(SRCS))
 
