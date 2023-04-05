@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:14:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/03 14:19:28 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/05 10:42:57 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	swap(t_data *d, char type);
 void	push(t_data *d, char type);
 void	rotate(t_data *d, char type);
 void	reverse_rotate(t_data *d, char type);
+void	push_swap(t_data *d);
 
 #endif

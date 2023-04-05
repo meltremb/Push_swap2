@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:10:56 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/03 13:06:28 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:59:32 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,35 @@ void	dbl_lst_print(t_pile *a, t_pile *b)
 {
 	t_node	*node_a;
 	t_node	*node_b;
-	int		i;
-	int		j;
+	size_t	size;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
 	node_a = a->first;
 	node_b = b->first;
+	if (a->size > b->size)
+		size = a->size;
+	else if (a->size < b->size)
+		size = b->size;
+	else
+		size = a->size;
 	printf("---List A----------List B---\n");
-	while (i++ < (a->size + b->size) && node_a)
+	while (i++ < (size) && node_a)
 	{
-		printf("node%d:[%d]----------", i, node_a->index);
+		if (i <= a->size)
+			printf("node%zu:[%d]----------", i, node_a->index);
+		else
+			printf("node%zu:[0]----------", i);
 		if (j++ < b->size)
 		{
-			printf("node%d:[%d]\n", j, node_b->index);
+			printf("node%zu:[%d]\n", j, node_b->index);
 			node_b = node_b->next;
 		}
 		else
-			printf("node%d:[0]\n", j);
-		node_a = node_a->next;
+			printf("node%zu:[0]\n", j);
+		if (node_a->next)
+			node_a = node_a->next;
 	}
 }
