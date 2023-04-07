@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:05:47 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/03 13:05:27 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:03:52 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	p(t_pile *a, t_pile *b)
 	b->size--;
 	temp = b->first;
 	b->first = b->first->next;
-	b->first->prev = NULL;
 	if (a->first)
 	{
 		temp->next = a->first;
@@ -76,7 +75,7 @@ void	rotate(t_data *d, char type)
 	if ((type == 'a' || type == 's') && d->a->size > 1)
 	{
 		temp = d->a->first;
-		temp->next->prev = NULL;
+		temp->prev = d->a->last;
 		d->a->first = temp->next;
 		d->a->last->next = temp;
 		d->a->last = temp;
@@ -86,7 +85,7 @@ void	rotate(t_data *d, char type)
 	if ((type == 'b' || type == 's') && d->b->size > 1)
 	{
 		temp = d->b->first;
-		temp->next->prev = NULL;
+		temp->prev = d->b->last;
 		d->b->first = temp->next;
 		d->b->last->next = temp;
 		d->b->last = temp;
@@ -104,9 +103,9 @@ void	reverse_rotate(t_data *d, char type)
 	if ((type == 'a' || type == 's') && d->a->size > 1)
 	{
 		temp = d->a->last;
-		temp->prev->next = NULL;
 		temp->next = d->a->first;
 		d->a->last = temp->prev;
+		d->a->first->prev = temp;
 		d->a->first = temp;
 		if (type == 'a')
 			write (1, "rra\n", 4);
@@ -114,9 +113,9 @@ void	reverse_rotate(t_data *d, char type)
 	if ((type == 'b' || type == 's') && d->b->size > 1)
 	{
 		temp = d->b->last;
-		temp->prev->next = NULL;
 		temp->next = d->b->first;
 		d->b->last = temp->prev;
+		d->b->first->prev = temp;
 		d->b->first = temp;
 		if (type == 'b')
 			write (1, "rrb\n", 4);

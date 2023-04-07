@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:08:08 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/05 16:08:56 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:03:42 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,21 @@
 void	rotate_until(t_data *d, char type, int count)
 {
 	if (count > 0)
+	{
 		while (count-- > 0)
+		{
 			rotate(d, type);
+			//dbl_lst_print(d->a, d->b);
+		}
+	}
 	else if (count < 0)
+	{
 		while (count++ < 0)
+		{
 			reverse_rotate(d, type);
+			//dbl_lst_print(d->a, d->b);
+		}
+	}
 }
 
 int	is_sorted(t_data *d)

@@ -6,35 +6,58 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:07:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/06 12:14:46 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:26:23 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+void	push_back(t_data *d)
+{
+	while (d->b->size > 0)
+		push(d, 'a');
+}
+
+int	counter(t_pile *any, int value)
+{
+	int		countdown;
+	int		countup;
+	t_node	*tempfirst;
+	t_node	*templast;
+
+	countdown = 0;
+	countup = -1;
+	tempfirst = any->first;
+	templast = any->last;
+	while (tempfirst->index != value && templast->index != value)
+	{
+		countdown++;
+		countup--;
+		tempfirst = tempfirst->next;
+		templast = templast->prev;
+	}
+	if (tempfirst->index == value)
+		return (countdown);
+	return (countup);
+}
+
 void	push_swap(t_data *d)
 {
-	int		i;
-	int		count;
-	t_node	*temp;
+	int	i;
+	int	count;
 
-	i = 0;
 	if (!is_sorted(d))
 	{
-		while (i < d->a->size + d->b->size)
+		i = 0;
+		while (i++ < d->a->size + d->b->size)
 		{
-			i++;
-			temp = d->a->first;
-			count = 0;
-			while (temp->index != i)
-			{
-				count++;
-				temp = temp->next;
-			}
+			count = counter(d->a, i);
+			if (count == 1)
+				swap(d, 'a');
+			count = counter(d->a, i);
 			rotate_until(d, 'a', count);
 			push(d, 'b');
 		}
-		while (d->b->size > 0)
-			push(d, 'a');
+		push_back(d);
 	}
 }
