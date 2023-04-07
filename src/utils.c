@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 12:29:20 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/05 16:08:57 by meltremb         ###   ########.fr       */
+/*   Created: 2023/04/05 16:08:08 by meltremb          #+#    #+#             */
+/*   Updated: 2023/04/05 16:08:56 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
+void	rotate_until(t_data *d, char type, int count)
 {
-	t_data	*d;
+	if (count > 0)
+		while (count-- > 0)
+			rotate(d, type);
+	else if (count < 0)
+		while (count++ < 0)
+			reverse_rotate(d, type);
+}
 
-	if (argc < 3)
-		return (0);
-	d = ft_calloc(1, sizeof(t_data));
-	init_piles(d);
-	make_pile(d->a, argc, argv);
-	dbl_lst_print(d->a, d->b);
-	push_swap(d);
-	dbl_lst_print(d->a, d->b);
-	return (0);
+int	is_sorted(t_data *d)
+{
+	t_node	*temp;
+	int		i;
+
+	temp = d->a->first;
+	i = 1;
+	while (temp)
+	{
+		if (temp->index != i)
+			return (0);
+		i++;
+		temp = temp->next;
+	}
+	return (1);
 }
