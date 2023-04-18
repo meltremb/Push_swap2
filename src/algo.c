@@ -6,57 +6,67 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:07:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/07 13:26:23 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:17:12 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	push_back(t_data *d)
+void	quick_sort(t_data *d)
 {
-	while (d->b->size > 0)
-		push(d, 'a');
+	if (d->b->size > 3)
+	{
+		if (d->b->first->index != d->a->first->index)
+		{
+			
+		}
+	}
+
 }
 
-int	counter(t_pile *any, int value)
+void	push_back(t_data *d)
 {
-	int		countdown;
-	int		countup;
-	t_node	*tempfirst;
-	t_node	*templast;
+	int	i;
 
-	countdown = 0;
-	countup = -1;
-	tempfirst = any->first;
-	templast = any->last;
-	while (tempfirst->index != value && templast->index != value)
+	i = d->b->size + 1;
+	while (--i > 0)
 	{
-		countdown++;
-		countup--;
-		tempfirst = tempfirst->next;
-		templast = templast->prev;
+		if (d->b->first->index == i)
+			push(d, 'a');
+		else
+		{
+			rotate_until(d, 'b', counter(d->b, i));
+			push(d, 'a');
+		}
 	}
-	if (tempfirst->index == value)
-		return (countdown);
-	return (countup);
 }
 
 void	push_swap(t_data *d)
 {
+	int	min;
+	int	max;
+	int	range;
 	int	i;
-	int	count;
 
+	range = root(d->a->size);
+	min = 1;
+	max = range;
+	i = 0;
 	if (!is_sorted(d))
 	{
-		i = 0;
-		while (i++ < d->a->size + d->b->size)
+		while (i < (d->a->size + d->b->size))
 		{
-			count = counter(d->a, i);
-			if (count == 1)
-				swap(d, 'a');
-			count = counter(d->a, i);
-			rotate_until(d, 'a', count);
-			push(d, 'b');
+			while (i++ < max)
+			{
+				rotate_until(d, 'a', look_for_range(d, min, max, i));
+				quick_sort(d);
+				push(d, 'b');
+			}
+			min = i;
+			i--;
+			max = (min + range) - 1;
+			if (max > d->a->size + d->b->size)
+				max = d->a->size + d->b->size;
 		}
 		push_back(d);
 	}

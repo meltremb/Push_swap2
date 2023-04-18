@@ -6,7 +6,7 @@
 #    By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 10:07:01 by meltremb          #+#    #+#              #
-#    Updated: 2023/04/05 16:08:54 by meltremb         ###   ########.fr        #
+#    Updated: 2023/04/17 11:21:46 by meltremb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS	=	src/push_swap.c \
 			src/moves.c \
 			src/algo.c \
 			src/utils.c \
+			src/more_utils.c \
 
 OBJS	=	$(patsubst $(SRCDIR)%.c,$(OBJDIR)%.o,$(SRCS))
 

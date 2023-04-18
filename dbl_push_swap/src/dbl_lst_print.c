@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:10:56 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/05 15:59:32 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/18 11:24:51 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	dbl_lst_print(t_pile *a, t_pile *b)
 	else
 		size = a->size;
 	printf("---List A----------List B---\n");
-	while (i++ < (size) && node_a)
+	while (i++ < (size) && (node_a || b))
 	{
 		if (i <= a->size)
 			printf("node%zu:[%d]----------", i, node_a->index);
@@ -44,7 +44,7 @@ void	dbl_lst_print(t_pile *a, t_pile *b)
 		}
 		else
 			printf("node%zu:[0]\n", j);
-		if (node_a->next)
+		if (node_a)
 			node_a = node_a->next;
 	}
 }
