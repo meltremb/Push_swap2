@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:19:56 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/18 16:10:11 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:37:10 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ int	counter(t_pile *any, int value)
 	countup = -1;
 	tempfirst = any->first;
 	templast = any->last;
-	while ((tempfirst && tempfirst->index != value) && (templast && templast->index != value) && (countdown < any->size))
+	while ((tempfirst && tempfirst->index != value)
+		&& (templast && templast->index != value) && (countdown < any->size))
 	{
 		countdown++;
 		countup--;
 		tempfirst = tempfirst->next;
 		templast = templast->prev;
-		//printf("down %d up %d\n", countdown, countup);
 	}
-	//printf("down %d up %d\n", countdown, countup);
 	if (tempfirst && tempfirst->index == value)
 		return (countdown);
 	else if (templast && templast->index == value)
@@ -52,11 +51,25 @@ int	look_for_range(t_data *d, int min, int max, int i)
 	j = min - 1;
 	while (j++ < max)
 	{
-	//	printf("uwu\n");
 		nb_moves = counter(d->a, j);
-	//	printf("prev %d now %d j %d\n", prev_nb_moves, nb_moves, j);
 		prev_nb_moves = smallest_range(prev_nb_moves, nb_moves);
-		//printf("%d %d %d %d\n", min, max, i, j);
 	}
 	return (prev_nb_moves);
+}
+
+void	push_back(t_data *d)
+{
+	int	i;
+
+	i = d->b->size + 1;
+	while (--i > 0)
+	{
+		if (d->b->first->index == i)
+			push(d, 'a');
+		else
+		{
+			rotate_until(d, d->b, 'b', counter(d->b, i));
+			push(d, 'a');
+		}
+	}
 }

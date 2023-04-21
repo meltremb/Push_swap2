@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:19:22 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/05 16:00:45 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:08:26 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,40 @@ void	arg_check(char *args)
 	i = 0;
 	while (args[i++])
 	{
-		if (ft_str_isdigit(args) == 0 || (ft_atoi(args) > INT_MAX
-				&& ft_atoi(args) < INT_MIN))
+		if (!ft_str_isdigit(args)
+			|| (ft_atoi(args) > INT_MAX && ft_atoi(args) < INT_MIN))
 			ft_exit("Error");
 	}
 }
 
-void	check_doubles(t_pile *a)
+int	check_doubles(char **argv)
 {
-	t_node	*temp;
-	t_node	*smol;
+	char	*temp;
+	char	*first;
 	int		doubles;
+	int		k;
+	int		i;
 
-	smol = a->first;
-	while (smol)
+	k = 0;
+	while (argv[++k])
 	{
-		temp = a->first;
+		i = 0;
+		arg_check(argv[k]);
 		doubles = 0;
-		while (temp)
+		first = argv[k];
+		while (argv[++i])
 		{
-			if (smol->index == temp->index)
+			temp = argv[i];
+			if (!ft_strcmp(first, temp))
 				doubles++;
 			if (doubles >= 2)
-				ft_exit("Error");
-			temp = temp->next;
+				return (0);
 		}
-		smol = smol->next;
 	}
+	return (1);
 }
 
-void	make_pile(t_pile *any, int argc, char **argv)
+void	make_pile(t_data *d, int argc, char **argv)
 {
 	int		i;
 	int		k;
@@ -90,10 +94,10 @@ void	make_pile(t_pile *any, int argc, char **argv)
 		while (args[++k])
 		{
 			arg_check(args[k]);
-			dbl_lst_add_back(any, ft_atoi(args[k]));
+			dbl_lst_add_back(d->a, ft_atoi(args[k]));
 		}
 		ft_free_array((void ***) &args);
 	}
-	indexer(any);
-	check_doubles(any);
+	indexer(d->a);
+	d->range = root(d->a->size);
 }

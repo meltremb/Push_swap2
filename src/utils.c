@@ -6,23 +6,23 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:08:08 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/18 12:52:17 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:23:25 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	rotate_until(t_data *d, char type, int count)
+void	rotate_until(t_data *d, t_pile *any, char type, int count)
 {
 	if (count > 0)
 	{
 		while (count-- > 0)
-			rotate(d, type);
+			rotate(d, any, type);
 	}
 	else if (count < 0)
 	{
 		while (count++ < 0)
-			reverse_rotate(d, type);
+			reverse_rotate(d, any, type);
 	}
 }
 
@@ -43,37 +43,6 @@ int	is_sorted(t_data *d)
 	return (1);
 }
 
-int	is_in_order(t_data *d, char type)
-{
-	t_node	*temp;
-	int		nb_moves;
-
-	nb_moves = 0;
-	if (type == 'a')
-	{
-		temp = d->a->first;
-		while (temp)
-		{
-			nb_moves++;
-			if (temp->index > temp->next->index)
-				return (nb_moves);
-			temp = temp->next;
-		}
-	}
-	else if (type == 'b')
-	{
-		temp = d->b->last;
-		while (temp->prev)
-		{
-			nb_moves++;
-			if (temp->index > temp->prev->index)
-				return (nb_moves);
-			temp = temp->prev;
-		}
-	}
-	return (0);
-}
-
 int	root(int size)
 {
 	int	i;
@@ -82,6 +51,24 @@ int	root(int size)
 	while (i * i < size)
 		i++;
 	return (i);
+}
+
+int	smollest(t_pile *any)
+{
+	t_node	*temp;
+	int		smollest;
+	int		i;
+
+	temp = any->first;
+	smollest = any->first->index;
+	i = 0;
+	while (temp && ++i <= any->size)
+	{
+		if (temp->index < smollest)
+			smollest = temp->index;
+		temp = temp->next;
+	}
+	return (smollest);
 }
 
 int	smallest_range(int prev, int new)
@@ -98,5 +85,5 @@ int	smallest_range(int prev, int new)
 	if (temp < temp_prev)
 		return (new);
 	else
-		return	(prev);
+		return (prev);
 }

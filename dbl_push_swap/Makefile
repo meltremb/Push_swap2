@@ -6,7 +6,7 @@
 #    By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 14:05:06 by meltremb          #+#    #+#              #
-#    Updated: 2023/03/29 14:24:20 by meltremb         ###   ########.fr        #
+#    Updated: 2023/04/21 15:27:34 by meltremb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,7 @@ NAME	=	dbl_extension_libft.a
 SRCDIR	=	src/
 OBJDIR	=	bin/
 SRCS	=	src/dbl_lst_add_back.c \
-			src/dbl_lst_add_front.c \
 			src/dbl_lst_free.c \
-			src/dbl_lst_print.c \
-			src/dbl_lst_rm.c \
 			src/libft_calloc.c \
 
 OBJS	=	$(patsubst $(SRCDIR)%.c,$(OBJDIR)%.o,$(SRCS))

@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:05:47 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/18 15:33:04 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:31:58 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,18 @@ void	p(t_pile *a, t_pile *b)
 	b->size--;
 	temp = b->first;
 	b->first = b->first->next;
+	if (temp->next)
+		temp->next->prev = NULL;
 	if (a->first)
 	{
 		temp->next = a->first;
 		a->first->prev = temp;
 	}
 	else
+	{
+		temp->next = NULL;
 		a->last = temp;
+	}
 	a->first = temp;
 }
 
@@ -68,58 +73,44 @@ void	push(t_data *d, char type)
 	}
 }
 
-void	rotate(t_data *d, char type)
+void	rotate(t_data *d, t_pile *any, char type)
 {
 	t_node	*temp;
 
-	if ((type == 'a' || type == 's') && d->a->size > 1)
-	{
-		temp = d->a->first;
-		temp->prev = d->a->last;
-		d->a->first = temp->next;
-		d->a->last->next = temp;
-		d->a->last = temp;
-		if (type == 'a')
-			write (1, "ra\n", 3);
-	}
-	if ((type == 'b' || type == 's') && d->b->size > 1)
-	{
-		temp = d->b->first;
-		temp->prev = d->b->last;
-		d->b->first = temp->next;
-		d->b->last->next = temp;
-		d->b->last = temp;
-		if (type == 'b')
-			write (1, "rb\n", 3);
-	}
-	if (type == 'r' && d->a->size > 2 && d->b->size > 1)
+	temp = any->first;
+	temp->prev = any->last;
+	any->first = temp->next;
+	temp->next = NULL;
+	any->first->prev = NULL;
+	any->last->next = temp;
+	any->last = temp;
+	if (type == 'a')
+		write (1, "ra\n", 3);
+	else if (type == 'b')
 		write (1, "rb\n", 3);
+	else if (type == 'r')
+		rotate(d, d->b, 'd');
+	else if (type == 'd')
+		write (1, "rr\n", 3);
 }
 
-void	reverse_rotate(t_data *d, char type)
+void	reverse_rotate(t_data *d, t_pile *any, char type)
 {
 	t_node	*temp;
 
-	if ((type == 'a' || type == 's') && d->a->size > 1)
-	{
-		temp = d->a->last;
-		temp->next = d->a->first;
-		d->a->last = temp->prev;
-		d->a->first->prev = temp;
-		d->a->first = temp;
-		if (type == 'a')
-			write (1, "rra\n", 4);
-	}
-	if ((type == 'b' || type == 's') && d->b->size > 1)
-	{
-		temp = d->b->last;
-		temp->next = d->b->first;
-		d->b->last = temp->prev;
-		d->b->first->prev = temp;
-		d->b->first = temp;
-		if (type == 'b')
-			write (1, "rrb\n", 4);
-	}
-	if (type == 'r' && d->a->size > 2 && d->b->size > 1)
+	temp = any->last;
+	any->last = temp->prev;
+	any->last->next = NULL;
+	temp->prev = NULL;
+	temp->next = any->first;
+	any->first->prev = temp;
+	any->first = temp;
+	if (type == 'a')
+		write (1, "rra\n", 4);
+	else if (type == 'b')
+		write (1, "rrb\n", 4);
+	else if (type == 'r')
+		reverse_rotate(d, d->b, 'd');
+	else if (type == 'd')
 		write (1, "rrr\n", 4);
 }
