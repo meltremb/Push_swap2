@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:29:20 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/21 15:34:50 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/24 10:13:25 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	main(int argc, char **argv)
 {
 	t_data	*d;
 
-	if (argc < 3 || !check_doubles(argv))
+	if (!check_doubles(argv))
 		ft_exit("Error");
 	d = ft_calloc(1, sizeof(t_data));
 	init_piles(d);

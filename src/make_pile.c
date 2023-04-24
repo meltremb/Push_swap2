@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:19:22 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/24 10:10:53 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/24 10:13:59 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	arg_check(char *args)
 	int		i;
 
 	i = 0;
-	if (ft_atoi(args) >= INT_MAX || ft_atoi(args) <= INT_MIN)
+	if (ft_atoi(args) > INT_MAX || ft_atoi(args) < INT_MIN)
 		ft_exit("Error");
 	while (args[i++])
 	{
