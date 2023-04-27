@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:19:22 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/27 11:52:04 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/27 12:03:59 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ int	make_pile(t_data *d, int argc, char **argv)
 		while (args[++k])
 		{
 			if (!arg_check(args[k]))
+			{
+				ft_free_array((void ***) &args);
 				return (0);
+			}
 			dbl_lst_add_back(d->a, ft_atoi(args[k]));
 		}
 		ft_free_array((void ***) &args);
