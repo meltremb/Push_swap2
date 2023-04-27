@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:29:20 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/24 10:13:25 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/27 11:09:02 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,16 @@ int	main(int argc, char **argv)
 {
 	t_data	*d;
 
-	if (!check_doubles(argv))
-		ft_exit("Error");
 	d = ft_calloc(1, sizeof(t_data));
 	init_piles(d);
-	make_pile(d, argc, argv);
+	if (!make_pile(d, argc, argv))
+	{
+		dbl_lst_free(d->a);
+		free(d->a);
+		free(d->b);
+		free(d);
+		ft_exit("Error");
+	}
 	if (d->a->size <= 3)
 		three_sort(d);
 	else if (d->a->size <= 6)

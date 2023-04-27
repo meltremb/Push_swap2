@@ -6,16 +6,14 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:55:22 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/21 15:27:49 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/27 11:38:58 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DBL_EXTENSION_LIBFT_H
 # define DBL_EXTENSION_LIBFT_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdarg.h>
+# include "../../reworked-libft/libft.h"
 
 typedef struct s_node
 {

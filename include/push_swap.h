@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:14:32 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/21 14:25:10 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/27 11:06:53 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ typedef struct s_data
 }			t_data;
 
 void	init_piles(t_data *d);
-void	make_pile(t_data *d, int argc, char **argv);
+int		make_pile(t_data *d, int argc, char **argv);
 void	swap(t_data *d, char type);
 void	push(t_data *d, char type);
 void	rotate(t_data *d, t_pile *any, char type);
 void	reverse_rotate(t_data *d, t_pile *any, char type);
 void	rotate_until(t_data *d, t_pile *any, char type, int count);
-int		check_doubles(char **argv);
+int		check_doubles(t_pile *any);
+int		too_long(char *str);
 int		is_sorted(t_data *d);
 int		root(int size);
 int		smallest_range(int prev, int new);
