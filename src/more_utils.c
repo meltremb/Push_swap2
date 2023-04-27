@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:19:56 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/27 11:37:10 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/27 11:55:54 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	too_long(char *str)
 	{
 		if (ft_strlen(str) > 11)
 			return (0);
+		else if (ft_strlen(str) < 11)
+			return (1);
 		else if (ft_strncmp(str, "-2147483648", 11) > 0)
 			return (0);
 	}
@@ -87,6 +89,8 @@ int	too_long(char *str)
 	{
 		if (ft_strlen(str) > 10)
 			return (0);
+		else if (ft_strlen(str) < 10)
+			return (1);
 		else if (ft_strncmp(str, "2147483647", 10) > 0)
 			return (0);
 	}
