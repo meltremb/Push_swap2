@@ -6,7 +6,7 @@
 /*   By: meltremb <meltremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:19:22 by meltremb          #+#    #+#             */
-/*   Updated: 2023/04/27 12:03:59 by meltremb         ###   ########.fr       */
+/*   Updated: 2023/04/27 12:18:38 by meltremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,8 @@ int	arg_check(char *args)
 	i = 0;
 	if (!too_long(args))
 		return (0);
-	while (args[i++])
-	{
-		if (!ft_str_isdigit(args))
-			return (0);
-	}
+	if (!ft_str_isdigit(args))
+		return (0);
 	return (1);
 }
 
